@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import styles from "./output.module.css";
 import { useReactToPrint } from "react-to-print";
 import html2canvas from "html2canvas";
-import printJS from "print-js";
+
 import exportAsImage from "../../utils/exportAsImage";
 
 import frame from "./../../assets/frame.png";
@@ -13,36 +13,9 @@ export default function Output({ capturedImg, setShowComponent }) {
 
   console.log(printRef.current);
 
-  // Handle the printing
-  const handlePrint = () => {
-    printJS({
-      printable: "contentToPrint", // ID of the element to print
-      type: "html",
-      targetStyles: ["*"], // Include all styles
-      style: `
-      #contentToPrint {
-        width: 100%;
-        height: auto;
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      #contentToPrint img {
-        width: 100%; /* Ensures the image takes full width */
-        height: auto; /* Maintains aspect ratio */
-      }
-
-      @page {
-        margin: 0; /* Removes default page margins for full-width content */
-      }
-
-      body {
-        margin: 0; /* Ensures body has no margin when printing */
-      }
-    `,
-    });
-  };
+  const handlePrint = useReactToPrint({
+    content: () => printRef.current,
+  });
 
   function printDivAsImage() {
     // Get the content of the div
@@ -108,7 +81,7 @@ export default function Output({ capturedImg, setShowComponent }) {
         >
           Download
         </button>
-        <button onClick={handlePrint} className="btn">
+        <button onClick={printDivAsImage} className="btn">
           Print
         </button>
         <button onClick={() => setShowComponent("camera")} className="btn">
