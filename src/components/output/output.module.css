@@ -26,10 +26,28 @@
   }
 }
 
-/* @media print {
+@media print {
   .outputImgContainer {
-    page-break-inside: avoid;
-    max-width: 100%;
-    height: auto;
+    width: 100%; /* Full page width */
+    height: auto; /* Adjust height dynamically */
+    margin: 0;
+    padding: 0;
+    page-break-inside: avoid; /* Prevent splitting across pages */
+    display: flex;
+    justify-content: center; /* Center content */
+    align-items: center;
   }
-} */
+
+  .outputImgContainer img {
+    width: 100%; /* Stretch images to full width */
+    height: auto; /* Maintain aspect ratio */
+  }
+
+  @page {
+    margin: 0; /* Remove page margins */
+  }
+
+  body {
+    margin: 0; /* Ensure no margin on body */
+  }
+}

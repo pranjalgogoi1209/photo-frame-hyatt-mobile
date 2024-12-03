@@ -13,9 +13,36 @@ export default function Output({ capturedImg, setShowComponent }) {
 
   console.log(printRef.current);
 
-  const handlePrint = useReactToPrint({
-    content: () => printRef.current,
-  });
+  // Handle the printing
+  const handlePrint = () => {
+    printJS({
+      printable: "contentToPrint", // ID of the element to print
+      type: "html",
+      targetStyles: ["*"], // Include all styles
+      style: `
+      #contentToPrint {
+        width: 100%;
+        height: auto;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      #contentToPrint img {
+        width: 100%; /* Ensures the image takes full width */
+        height: auto; /* Maintains aspect ratio */
+      }
+
+      @page {
+        margin: 0; /* Removes default page margins for full-width content */
+      }
+
+      body {
+        margin: 0; /* Ensures body has no margin when printing */
+      }
+    `,
+    });
+  };
 
   function printDivAsImage() {
     // Get the content of the div
@@ -81,7 +108,7 @@ export default function Output({ capturedImg, setShowComponent }) {
         >
           Download
         </button>
-        <button onClick={printDivAsImage} className="btn">
+        <button onClick={handlePrint} className="btn">
           Print
         </button>
         <button onClick={() => setShowComponent("camera")} className="btn">
