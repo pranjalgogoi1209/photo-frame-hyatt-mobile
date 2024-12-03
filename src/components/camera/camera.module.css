@@ -1,0 +1,36 @@
+.Camera {
+  gap: 5dvh;
+  height: 100dvh;
+  justify-content: flex-start !important;
+  padding: 5dvh 0;
+
+  .main {
+    width: 70vw;
+    background: linear-gradient(to right, #42d3d3, #f24ec1);
+    padding: 1vw 0.8vw;
+
+    .webcamParent {
+      position: relative;
+      width: 99%;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      /* background-color: red; */
+      #webcam {
+        width: 100%;
+      }
+      .capturedImage {
+        width: 100%;
+        transform: translate(0.1vw, 0.1);
+      }
+    }
+  }
+
+  .footer {
+    margin-top: 3dvh;
+    .afterCaptureBtnContainer {
+      gap: 2dvh;
+    }
+  }
+}

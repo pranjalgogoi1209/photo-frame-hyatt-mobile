@@ -1,0 +1,35 @@
+.Output {
+  height: 100dvh;
+  gap: 5dvh;
+  justify-content: flex-start !important;
+  padding: 5dvh 0;
+
+  .outputImgContainer {
+    position: relative;
+    width: 70vw;
+    .frame {
+      width: 100%;
+      height: auto;
+    }
+    .capturedImage {
+      width: 87%;
+      height: 87%;
+      position: absolute;
+      top: 8%;
+      left: 6%;
+      z-index: -1;
+    }
+  }
+
+  .footer {
+    gap: 2dvh;
+  }
+}
+
+/* @media print {
+  .outputImgContainer {
+    page-break-inside: avoid;
+    max-width: 100%;
+    height: auto;
+  }
+} */
