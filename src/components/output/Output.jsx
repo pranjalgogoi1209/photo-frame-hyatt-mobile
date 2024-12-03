@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import styles from "./output.module.css";
 import { useReactToPrint } from "react-to-print";
 import html2canvas from "html2canvas";
-
+import printJS from "print-js";
 import exportAsImage from "../../utils/exportAsImage";
 
 import frame from "./../../assets/frame.png";
